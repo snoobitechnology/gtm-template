@@ -59,7 +59,13 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const injectScript = require('injectScript');
-const url="https://"+data.environment+"/?foo=bar&account="+data.account;
+const encodeUriComponent = require('encodeUriComponent');
+
+var host="eu2.snoobi.eu";
+
+if(data.environment=="eu2.snoobi.com") { host="eu2.snoobi.eu"; }
+
+const url="https://"+host+"/?foo=bar&account="+encodeUriComponent(data.account);
 
 const onSuccess = () => { data.gtmOnSuccess(); };
 
